@@ -90,7 +90,7 @@ class _ScanState extends State<ScanScreen> {
     }
   }
 
-  Future<List> _login() async {
+  Future _login() async {
     final response = await http.post(barcode, body: {"imei": imei});
 
     var res = json.decode(response.body);
@@ -108,7 +108,7 @@ class _ScanState extends State<ScanScreen> {
   }
 
   Future<List> log(String menu) async {
-    final response = await http.post('http://192.168.2.72/Api/auth/log_menu',
+    final response = await http.post('http://192.168.3.73/Api/auth/log_menu',
         body: {"imei": imei, "menu": menu});
     var res = json.decode(response.body);
     // print(res['data'][0]['id']);
@@ -217,6 +217,10 @@ class _ScanState extends State<ScanScreen> {
                         // Navigator.pushNamed(context, '/About');
                       },
                     ),
+                  ),
+                  Text(
+                    imei,
+                    style: TextStyle(color: Colors.black),
                   ),
                 ],
               )
